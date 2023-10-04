@@ -58,7 +58,7 @@ public class ChargingTest
         {
             // Arrange
             ChargingController controller = new ChargingController(context);
-            context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 2 });
+            context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 2 });
             context.SaveChanges();
             var newChargeStation = new ChargeStation
             {
@@ -91,7 +91,7 @@ public class ChargingTest
         {
             // Arrange
             ChargingController controller = new ChargingController(context);
-            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
+            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
             _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "New Charge Station", Id = 3 });
             _context.SaveChanges();
 
@@ -124,7 +124,7 @@ public class ChargingTest
         {
             // Arrange
             ChargingController controller = new ChargingController(context);
-            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
+            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
             _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "New Charge Station", Id = 4 });
             _context.SaveChanges();
             int chargeStationIdToDelete = 4;

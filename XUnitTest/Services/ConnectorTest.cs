@@ -34,7 +34,7 @@ public class ConnectorTest
 
             ConnectorController controller = new ConnectorController(context);
 
-            context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
+            context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
             context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "charge-station-1", GroupId = 1, Id = 1 });
             context.Connectors.Add(new GreenFluxSmartChargingAPI.Dto.Connector { MaxCurrentInAmps = 1, ChargeStationId = 1, Id = 1 });
             context.SaveChanges();
@@ -59,7 +59,7 @@ public class ConnectorTest
         {
             // Arrange
             ConnectorController controller = new ConnectorController(context);
-            context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 2 });
+            context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 2 });
             context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "test1", GroupId = 2, Id = 2 });
             context.SaveChanges();
             var newConnector = new Connector
@@ -93,7 +93,7 @@ public class ConnectorTest
         {
             // Arrange
             ConnectorController controller = new ConnectorController(context);
-            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
+            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
             _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "New Charge Station", Id = 3 });
             _context.Connectors.Add(new GreenFluxSmartChargingAPI.Dto.Connector { MaxCurrentInAmps = 3, ChargeStationId = 3, Id = 3 });
             _context.SaveChanges();
@@ -127,7 +127,7 @@ public class ConnectorTest
         {
             // Arrange
             ConnectorController controller = new ConnectorController(context);
-            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
+            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
             _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "New Charge Station", Id = 4 });
             _context.Connectors.Add(new GreenFluxSmartChargingAPI.Dto.Connector { MaxCurrentInAmps = 4, ChargeStationId = 4, Id = 4 });
             _context.SaveChanges();
