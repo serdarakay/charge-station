@@ -34,7 +34,7 @@ public class ChargingTest
 
             ChargingController controller = new ChargingController(context);
 
-            context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
+            context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
             context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.ChargeStation { Name = "charge-station-1", GroupId = 1, Id = 1 });
             context.SaveChanges();
 
