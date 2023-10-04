@@ -34,7 +34,7 @@ public class GroupTest
 
             GroupController controller = new GroupController(context);
 
-            context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
+            context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "test1", CapacityInAmps = 10, Id = 1 });
             context.SaveChanges();
 
             // Act
@@ -75,7 +75,7 @@ public class GroupTest
             Assert.Equal(newGroup.CapacityInAmps, resultValue.CapacityInAmps);
             Assert.Equal(200, result.StatusCode);
 
-            var createdGroup = context.Groups.FirstOrDefault(g => g.Name == "New Group");
+            var createdGroup = context.ChargeStations.FirstOrDefault(g => g.Name == "New Group");
             Assert.NotNull(createdGroup);
             Assert.Equal("New Group", createdGroup.Name);
             Assert.Equal(20, createdGroup.CapacityInAmps);
@@ -91,7 +91,7 @@ public class GroupTest
         {
             // Arrange
             GroupController controller = new GroupController(context);
-            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
+            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 3 });
             _context.SaveChanges();
 
             var groupToUpdate = new Group
@@ -108,7 +108,7 @@ public class GroupTest
             Assert.NotNull(result);
             Assert.Equal(200, result.StatusCode);
 
-            var updatedGroup = context.Groups.FirstOrDefault(g => g.Id == groupToUpdate.Id);
+            var updatedGroup = context.ChargeStations.FirstOrDefault(g => g.Id == groupToUpdate.Id);
             Assert.NotNull(updatedGroup);
             Assert.Equal(groupToUpdate.Name, updatedGroup.Name);
             Assert.Equal(30, updatedGroup.CapacityInAmps);
@@ -125,7 +125,7 @@ public class GroupTest
         {
             // Arrange
             GroupController controller = new GroupController(context);
-            _context.Groups.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
+            _context.ChargeStations.Add(new GreenFluxSmartChargingAPI.Dto.Group { Name = "New Group", CapacityInAmps = 10, Id = 4 });
             _context.SaveChanges();
             int groupIdToDelete = 4;
 
@@ -136,7 +136,7 @@ public class GroupTest
             Assert.NotNull(result);
             Assert.Equal(200, result.StatusCode);
 
-            var deletedGroup = context.Groups.FirstOrDefault(g => g.Id == groupIdToDelete);
+            var deletedGroup = context.ChargeStations.FirstOrDefault(g => g.Id == groupIdToDelete);
             Assert.Null(deletedGroup);
         }
 

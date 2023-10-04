@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace GreenFluxSmartChargingAPI.Dto
 {
-    public class Connector
+    public class Connector : Models.Connector
     {
-        public int Id { get; set; }
-        public int ChargeStationId { get; set; }
-        public int MaxCurrentInAmps { get; set; }
+
+        [JsonIgnore]
+        public ChargeStation ChargeStation { get; set; }
     }
 }

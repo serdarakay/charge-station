@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using GreenFluxSmartChargingAPI.Dto;
-
+using GreenFluxSmartChargingAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace GreenFluxSmartChargingAPI.Controllers;
 
@@ -8,56 +8,78 @@ namespace GreenFluxSmartChargingAPI.Controllers;
 [Route("api/[controller]")]
 public class ChargingController : ControllerBase
 {
-    // private readonly ChargingContext _context;
 
-    // public ChargingController(ChargingContext context)
-    // {
-    //     _context = context;
-    // }
+    public readonly DataContext _context;
 
-    private static readonly string[] Summaries = new[]
-{
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    private readonly ILogger<ChargingController> _logger;
-
-    public ChargingController(ILogger<ChargingController> logger)
+    public ChargingController(DataContext context)
     {
-        _logger = logger;
+        _context = context;
     }
-
-    [HttpGet("test")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet]
+    public IActionResult GetAll()
     {
-        return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        try
         {
-            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            TemperatureC = Random.Shared.Next(-20, 55),
-            Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-        })
-        .ToArray();
+            var data = _context.ChargeStations.Include(x => x.Connectors).ToList();
+
+            return Ok(data);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+
+        }
     }
-
-    [HttpPost("create-group")]
-    public IActionResult CreateGroup([FromBody] Group group)
+    [HttpPost]
+    public IActionResult CreateCharging([FromBody] Models.ChargeStation chargeStation)
     {
-        // Grup oluşturma kodunu buraya ekleyin
-        // _context.Groups.Add(group);
-        // _context.SaveChanges();
+        try
+        {
+            if (chargeStation == null)
+            {
+                throw new Exception("Model can not be Empty");
+            }
 
-        return Ok(group);
+            Dto.ChargeStation data = new()
+            {
+                Name = chargeStation.Name,
+                GroupId = chargeStation.GroupId
+            };
+
+            _context.ChargeStations.Add(data);
+
+            _context.SaveChanges();
+
+            return Ok(data);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message); 
+        }
     }
-
-    [HttpPost("create-charge-station")]
-    public IActionResult CreateChargeStation([FromBody] ChargeStation chargeStation)
+    [HttpPut("{id}")]
+    public IActionResult UpdateCharging(int id, [FromBody] Models.ChargeStation chargeStation)
     {
-        // Şarj istasyonu oluşturma kodunu buraya ekleyin
-        // _context.ChargeStations.Add(chargeStation);
-        // _context.SaveChanges();
+        try
+        {
+            Dto.ChargeStation existingChargeStation = _context.ChargeStations.FirstOrDefault(x => x.Id == id);
 
+            if (existingChargeStation == null)
+            {
+                throw new Exception("No Group Found");
+            }
+        }
+        catch (Exception ex)
+        {
+
+        }
         return Ok(chargeStation);
     }
 
-    // Diğer API yöntemlerini (güncelleme, silme vb.) ekleyin
+    [HttpDelete("{id}")]
+    public IActionResult DeleteCharging(int id)
+    {
+
+        return Ok(true);
+    }
 }

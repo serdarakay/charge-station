@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace GreenFluxSmartChargingAPI.Dto
 {
-    public class Group
+    public class Group : Models.Group
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int CapacityInAmps { get; set; }
-        public List<ChargeStation> ChargeStations { get; set; }
+        [JsonIgnore]
+        public List<ChargeStation>? ChargeStations { get; set; }
     }
 }
