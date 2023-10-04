@@ -39,6 +39,17 @@ public class ConnectorController : ControllerBase
                 throw new Exception("Model can not be Empty");
             }
 
+            var selectedGroup = _context.ChargeStations.Where(x => x.Id == connector.ChargeStationId).Select(x => x.Group).FirstOrDefault();
+
+            if (selectedGroup == null)
+            {
+                throw new Exception("There is no Group to calculate max amps value");
+            }
+            if (!IsGroupCapacitySufficient(selectedGroup))
+            {
+                throw new Exception("The sum of MaxCurrentInAmps values exceeds the Group capacity.");
+            }
+
             Dto.Connector data = new()
             {
                 ChargeStationId = connector.ChargeStationId,
@@ -112,5 +123,17 @@ public class ConnectorController : ControllerBase
         {
             return BadRequest(ex.Message);
         }
+    }
+
+    public bool IsGroupCapacitySufficient(Dto.Group group)
+    {
+        if (group == null)
+        {
+            throw new ArgumentNullException(nameof(group));
+        }
+
+        int totalMaxCurrent = group.ChargeStations?.SelectMany(cs => cs.Connectors).Sum(c => c.MaxCurrentInAmps) ?? 0;
+
+        return group.CapacityInAmps >= totalMaxCurrent;
     }
 }
