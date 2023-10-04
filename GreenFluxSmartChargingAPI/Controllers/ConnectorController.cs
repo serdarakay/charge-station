@@ -49,11 +49,16 @@ public class ConnectorController : ControllerBase
             {
                 throw new Exception("The sum of MaxCurrentInAmps values exceeds the Group capacity.");
             }
+            if (connector.MaxCurrentInAmps <= 0)
+            {
+                throw new Exception("MaxCurrentInAmps value has to be greater than 0");
+            }
 
             Dto.Connector data = new()
             {
                 ChargeStationId = connector.ChargeStationId,
-                MaxCurrentInAmps = connector.MaxCurrentInAmps
+                MaxCurrentInAmps = connector.MaxCurrentInAmps,
+                Identifier = connector.Identifier
             };
 
             _context.Connectors.Add(data);
@@ -84,9 +89,14 @@ public class ConnectorController : ControllerBase
             {
                 throw new Exception("There is no data to Update");
             }
+            if (connector.MaxCurrentInAmps <= 0)
+            {
+                throw new Exception("MaxCurrentInAmps value has to be greater than 0");
+            }
 
             existingConnector.ChargeStationId = connector.ChargeStationId;
             existingConnector.MaxCurrentInAmps = connector.MaxCurrentInAmps;
+            existingConnector.Identifier = connector.Identifier;
 
             _context.Attach(existingConnector);
             _context.Entry(existingConnector).State = EntityState.Modified;

@@ -31,7 +31,7 @@ public class ChargingController : ControllerBase
         }
     }
     [HttpPost]
-    public IActionResult CreateCharging([FromBody] Models.ChargeStation chargeStation)
+    public IActionResult CreateChargeStation([FromBody] Models.ChargeStation chargeStation)
     {
         try
         {
@@ -58,7 +58,7 @@ public class ChargingController : ControllerBase
         }
     }
     [HttpPut("{id}")]
-    public IActionResult UpdateCharging(int id, [FromBody] Models.ChargeStation chargeStation)
+    public IActionResult UpdateChargeStation(int id, [FromBody] Models.ChargeStation chargeStation)
     {
         try
         {
@@ -86,7 +86,7 @@ public class ChargingController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeleteCharging(int id)
+    public IActionResult DeleteChargeStation(int id)
     {
         try
         {
