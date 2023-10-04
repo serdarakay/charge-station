@@ -68,18 +68,48 @@ public class ChargingController : ControllerBase
             {
                 throw new Exception("No Group Found");
             }
+
+            existingChargeStation.Name = chargeStation.Name;
+            existingChargeStation.GroupId = chargeStation.GroupId;
+
+            _context.Attach(existingChargeStation);
+            _context.Entry(existingChargeStation).State = EntityState.Modified;
+
+            _context.SaveChanges();
+
+            return Ok(existingChargeStation);
         }
         catch (Exception ex)
         {
-
+            return BadRequest(ex.Message);
         }
-        return Ok(chargeStation);
     }
 
     [HttpDelete("{id}")]
     public IActionResult DeleteCharging(int id)
     {
+        try
+        {
+            var existingChargeStation = _context.ChargeStations.FirstOrDefault(x => x.Id == id);
 
-        return Ok(true);
+            if (existingChargeStation == null)
+            {
+                throw new Exception("No Group Found");
+            }
+
+            var connectorsToDelete = _context.Connectors.Where(x => x.ChargeStationId == existingChargeStation.Id).ToList();
+
+            _context.RemoveRange(connectorsToDelete);
+
+            _context.Remove(existingChargeStation);
+
+            _context.SaveChanges();
+
+            return Ok(new { success = true });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

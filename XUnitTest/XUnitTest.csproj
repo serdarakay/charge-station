@@ -22,15 +22,16 @@
     </PackageReference>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.11" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GreenFluxSmartChargingAPI\GreenFluxSmartChargingAPI.csproj" />
-  </ItemGroup>
   <ItemGroup>
     <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GreenFluxSmartChargingAPI\GreenFluxSmartChargingAPI.csproj" />
   </ItemGroup>
 </Project>
