@@ -23,23 +23,26 @@ You will need the following prerequisites to run the application:
 2. Navigate to the project directory:
 
     ```bash
-    cd your-repo
+    cd your-repo/GreenFluxSmartChargingAPI
 
-3. Build the Docker image:
-
-    ```bash
-    docker build -t green-flux-api .
-
-4. Run the Docker container:
+3. Run this command:
 
     ```bash
-    docker run -d -p 8080:80 green-flux-api
+    dotnet tool --global dotnet-ef
+    dotnet ef migrations add initial
+    dotnet ef database update
 
-5. Open your web browser and access the application at [http://localhost:8080](http://localhost:8080).
+4. Navigate to the Test project directory:
 
-6. Go to Swagger Url like [http://localhost:8080/swagger/index.html](http://localhost:8080/swagger/index.html).
+    ```bash
+    cd your-repo/XUnitTest
 
-7. Youı can test all endpoints into this url.
+    dotnet add package Microsoft.AspNetCore.Mvc.Testing
+    dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+5. Run Project and then you can test all endpoints at swagger.
+
+7. You can test all endpoints into this url.
 
 
 ## Usage

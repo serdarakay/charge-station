@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"))
     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-    ) ; 
+    ) ;
 
 var app = builder.Build();
 
