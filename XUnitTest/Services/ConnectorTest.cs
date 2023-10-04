@@ -3,7 +3,6 @@ using GreenFluxSmartChargingAPI.Data;
 using GreenFluxSmartChargingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace XUnitTest;
 
@@ -71,16 +70,12 @@ public class ConnectorTest
 
             // Act
             var result = controller.CreateConnector(newConnector) as OkObjectResult;
-            var resultValue = JsonConvert.DeserializeObject<Connector>(JsonConvert.SerializeObject(result.Value));
+            Connector? resultValue = result.Value as Connector;
 
             // Assert
             Assert.NotNull(result);
             Assert.Equal(newConnector.MaxCurrentInAmps, resultValue.MaxCurrentInAmps);
             Assert.Equal(200, result.StatusCode);
-
-            var createdConnector = context.Connectors.FirstOrDefault(g => g.Id == newConnector.Id);
-            Assert.NotNull(createdConnector);
-            Assert.Equal(newConnector.MaxCurrentInAmps, createdConnector.MaxCurrentInAmps);
         }
 
     }

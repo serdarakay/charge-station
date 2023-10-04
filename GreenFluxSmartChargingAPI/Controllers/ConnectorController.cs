@@ -39,7 +39,11 @@ public class ConnectorController : ControllerBase
                 throw new Exception("Model can not be Empty");
             }
 
-            var selectedGroup = _context.ChargeStations.Where(x => x.Id == connector.ChargeStationId).Select(x => x.Group).FirstOrDefault();
+            var selectedGroup = _context.Groups
+                .Include(g => g.ChargeStations)
+                .ThenInclude(cs => cs.Connectors)
+                .Where(x => x.ChargeStations.Any(cs => cs.Id == connector.ChargeStationId))
+                .FirstOrDefault();
 
             if (selectedGroup == null)
             {
@@ -81,6 +85,17 @@ public class ConnectorController : ControllerBase
             if (connector == null)
             {
                 throw new Exception("Model can not be Empty");
+            }
+
+            var selectedGroup = _context.Groups
+                .Include(g => g.ChargeStations)
+                .ThenInclude(cs => cs.Connectors)
+                .Where(x => x.ChargeStations.Any(cs => cs.Id == connector.ChargeStationId))
+                .FirstOrDefault();
+
+            if (!IsGroupCapacitySufficient(selectedGroup))
+            {
+                throw new Exception("The sum of MaxCurrentInAmps values exceeds the Group capacity.");
             }
 
             var existingConnector = _context.Connectors.FirstOrDefault(x => x.Id == id);
@@ -135,7 +150,7 @@ public class ConnectorController : ControllerBase
         }
     }
 
-    public bool IsGroupCapacitySufficient(Dto.Group group)
+    bool IsGroupCapacitySufficient(Dto.Group group)
     {
         if (group == null)
         {

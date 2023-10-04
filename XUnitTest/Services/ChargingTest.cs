@@ -3,7 +3,6 @@ using GreenFluxSmartChargingAPI.Data;
 using GreenFluxSmartChargingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace XUnitTest;
 
@@ -69,7 +68,7 @@ public class ChargingTest
 
             // Act
             var result = controller.CreateChargeStation(newChargeStation) as OkObjectResult;
-            var resultValue = JsonConvert.DeserializeObject<ChargeStation>(JsonConvert.SerializeObject(result.Value));
+            ChargeStation? resultValue = result.Value as ChargeStation;
 
             // Assert
             Assert.NotNull(result);

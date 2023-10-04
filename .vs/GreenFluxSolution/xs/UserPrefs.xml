@@ -1,27 +1,23 @@
 ﻿<Properties StartupConfiguration="{36A244DD-D85B-49E1-BADF-1DDA7A4CFBD6}|https">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.GreenFluxSmartChargingAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="XUnitTest/Services/ChargingTest.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GreenFluxSmartChargingAPI/.gitignore">
     <Files>
       <File FileName="../.gitignore" />
-      <File FileName="XUnitTest/.gitignore" />
-      <File FileName="GreenFluxSmartChargingAPI/Controllers/ChargingController.cs" Line="31" Column="24" />
-      <File FileName="XUnitTest/Services/ChargingTest.cs" Line="1" Column="1" />
+      <File FileName="XUnitTest/.gitignore" Line="1" Column="1" />
+      <File FileName="GreenFluxSmartChargingAPI/.gitignore" Line="23" Column="9" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="GreenFluxSolution">
-            <Node name="GreenFluxSmartChargingAPI" expanded="True">
-              <Node name="Controllers" expanded="True" />
-            </Node>
-            <Node name="XUnitTest" expanded="True">
-              <Node name="Services" expanded="True">
-                <Node name="ChargingTest.cs" selected="True" />
-              </Node>
-            </Node>
+          <Node name="GreenFluxSolution" expanded="True">
+            <Node name="GreenFluxSmartChargingAPI" expanded="True" />
+            <Node name="XUnitTest" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -32,7 +28,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
