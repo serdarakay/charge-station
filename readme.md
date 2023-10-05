@@ -10,7 +10,6 @@ These instructions will guide you on how to run and use the application on your 
 
 You will need the following prerequisites to run the application:
 
-- Docker: [Docker Download Page](https://www.docker.com/products/docker-desktop)
 - .NET 7.0.308 SDK: [.NET 7.0.308 SDK Download Page](https://dotnet.microsoft.com/download/dotnet/7.0.308)
 
 ### Installation
