@@ -10,7 +10,7 @@ These instructions will guide you on how to run and use the application on your 
 
 You will need the following prerequisites to run the application:
 
-- .NET 7.0.308 SDK: [.NET 7.0.308 SDK Download Page](https://dotnet.microsoft.com/download/dotnet/7.0.308)
+- .NET 7.0.308 SDK: [.NET 7.0 SDK Download Page](https://dotnet.microsoft.com/download/dotnet/7.0)
 
 ### Installation
 
