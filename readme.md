@@ -27,6 +27,11 @@ You will need the following prerequisites to run the application:
 3. Run this command:
 
     ```bash
+
+    dotnet add package Microsoft.EntityFrameworkCore
+    dotnet add package Microsoft.EntityFrameworkCore.Design
+    dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+
     dotnet tool --global dotnet-ef
     dotnet ef migrations add initial
     dotnet ef database update
