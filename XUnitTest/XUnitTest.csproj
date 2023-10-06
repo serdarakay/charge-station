@@ -28,9 +28,13 @@
 
   <ItemGroup>
     <None Remove="Services\" />
+    <None Remove="Attributes\" />
+    <None Remove="Orderers\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />
+    <Folder Include="Attributes\" />
+    <Folder Include="Orderers\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GreenFluxSmartChargingAPI\GreenFluxSmartChargingAPI.csproj" />

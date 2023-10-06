@@ -3,9 +3,13 @@ using GreenFluxSmartChargingAPI.Data;
 using GreenFluxSmartChargingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using XUnitTest.Attributes;
 
 namespace XUnitTest;
 
+[TestCaseOrderer(
+    ordererTypeName: "XUnitTest.Orderers.PriorityOrderer",
+    ordererAssemblyName: "XUnitTest")]
 public class ChargingTest
 {
 
@@ -23,7 +27,7 @@ public class ChargingTest
         _context = new DataContext(options);
     }
 
-    [Fact]
+    [Fact,TestPriority(1)]
     public void Get_ChargeStations()
     {
 
@@ -50,7 +54,7 @@ public class ChargingTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(2)]
     public void Create_ChargeStation()
     {
         using (var context = new DataContext(options))
@@ -82,7 +86,7 @@ public class ChargingTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(3)]
     public void Update_ChargeStation()
     {
 
@@ -115,7 +119,7 @@ public class ChargingTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(4)]
     public void Delete_ChargeStation()
     {
 

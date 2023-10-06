@@ -3,9 +3,13 @@ using GreenFluxSmartChargingAPI.Data;
 using GreenFluxSmartChargingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using XUnitTest.Attributes;
 
 namespace XUnitTest;
 
+[TestCaseOrderer(
+    ordererTypeName: "XUnitTest.Orderers.PriorityOrderer",
+    ordererAssemblyName: "XUnitTest")]
 public class ConnectorTest
 {
 
@@ -23,7 +27,7 @@ public class ConnectorTest
         _context = new DataContext(options);
     }
 
-    [Fact]
+    [Fact, TestPriority(1)]
     public void Get_Connectors()
     {
 
@@ -51,7 +55,7 @@ public class ConnectorTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(2)]
     public void Create_Connector()
     {
         using (var context = new DataContext(options))
@@ -80,7 +84,7 @@ public class ConnectorTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(3)]
     public void Update_Connector()
     {
 
@@ -114,7 +118,7 @@ public class ConnectorTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(4)]
     public void Delete_Connector()
     {
 

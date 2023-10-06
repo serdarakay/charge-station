@@ -4,9 +4,13 @@ using GreenFluxSmartChargingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using XUnitTest.Attributes;
 
 namespace XUnitTest;
 
+[TestCaseOrderer(
+    ordererTypeName: "XUnitTest.Orderers.PriorityOrderer",
+    ordererAssemblyName: "XUnitTest")]
 public class GroupTest
 {
 
@@ -24,7 +28,7 @@ public class GroupTest
         _context = new DataContext(options);
     }
 
-    [Fact]
+    [Fact,TestPriority(1)]
     public void Get_Groups()
     {
 
@@ -50,7 +54,7 @@ public class GroupTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(2)]
     public void Create_Group()
     {
         using (var context = new DataContext(options))
@@ -83,7 +87,7 @@ public class GroupTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(3)]
     public void Update_Group()
     {
 
@@ -117,7 +121,7 @@ public class GroupTest
 
     }
 
-    [Fact]
+    [Fact, TestPriority(4)]
     public void Delete_Group()
     {
 
